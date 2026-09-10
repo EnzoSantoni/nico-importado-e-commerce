@@ -310,3 +310,47 @@ Cuando termine el proyecto en JavaScript (faltan como 20 clases del bootcamp), v
 > 2. Cómo funciona el sistema de tokens del tema. Es lo que nunca entendí y quiero entenderlo antes de maquetar nada.
 >
 > Explicámelo y lo hago yo.
+
+---
+
+## Ideas para la tienda — mi lista
+
+Funcionalidades que se me van ocurriendo para Niko Importados mientras avanzo. **No son para hacer ahora**: van más allá de lo que pide el bootcamp y las dejo anotadas para después de la v1.
+
+**Cuando te tire una idea, agregala acá.** No la implementes ni me armes el plan, solo sumala a la lista.
+
+- [ ] **Favoritos** — corazoncito en la card para guardar productos. *Depende de tener cuentas de usuario:* sin login no hay dónde guardar los favoritos de cada persona, así que va después de la autenticación.
+- [ ] **Valoraciones** — estrellitas por producto y algún destacado o recomendado. *No me convence del todo* — lo hacen todas las tiendas pero no sé si aporta acá. A decidir cuando llegue el momento.
+- [ ] **Reseñas / comentarios** — sección en el detalle del producto donde la gente pueda dejar su opinión y responder.
+
+---
+
+## Backlog técnico
+
+Deuda y mejoras que fueron quedando en el camino. A diferencia de la lista de arriba, esto es trabajo interno, no funcionalidades nuevas.
+
+Si te pregunto por algo de acá y todavía no corresponde por dónde voy en el bootcamp, recordámelo.
+
+### Cuando llegue la autenticación (clase 50+)
+- [ ] Unificar `isAdmin`: hoy está hardcodeado en Header, AdminGuard y AdminProduct. Tiene que salir de un único lugar (contexto o hook).
+- [ ] Guardar sesión y proteger las rutas de admin contra la API, no solo en el front.
+
+### Componentes a extraer
+- [ ] `Container` — el trío `w-full max-w-7xl mx-auto`. Hoy vive en `main`, y eso impide tener secciones con fondo a todo el ancho (hero, franja de ofertas).
+- [ ] Botón como componente con variantes (primario / secundario).
+
+### Mejoras de la tienda
+- [ ] Badge "NUEVO" en la card para productos con menos de X días (usando `createdAt`).
+- [ ] Formatear el precio a moneda argentina (viene como string de la API).
+- [ ] Estados de carga y error en `ProductList` — hoy el error solo va a `console.log`.
+- [ ] Menú mobile en el header: con 7 links en fila se rompe en pantallas chicas.
+- [ ] Filtros por categoría en el catálogo.
+
+### Calidad / portfolio
+- [ ] `motion-reduce:animate-none` en las animaciones del login.
+- [ ] Instalar Prettier + `prettier-plugin-tailwindcss` para ordenar las clases automáticamente.
+- [ ] Pasada de Lighthouse antes de publicar (performance, accesibilidad, buenas prácticas).
+- [ ] Revisar que no queden colores sueltos fuera de los tokens.
+
+### Pendiente con el cliente
+- [ ] Presentarle la paleta a mi amigo y ver si le gusta. Si la cambia, es un buen test de si los tokens están bien armados.
