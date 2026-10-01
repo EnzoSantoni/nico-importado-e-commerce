@@ -2,6 +2,8 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { useOrder } from "../../context/OrderContext";
+
 
 
 
@@ -9,6 +11,7 @@ export default function ProductCard({ prod }) {
     const date = new Date(prod.createdAt)
     const publicDate = date.toLocaleDateString("es-AR");
     const [ heart, setHeart ] = useState(false)
+    const { addOrderItem } = useOrder();
 
 
     return (
@@ -25,9 +28,12 @@ export default function ProductCard({ prod }) {
                 <span className="text-xs font-normal text-text-muted tabular-nums">{publicDate}</span>
                 <div className="mt-auto pt-3 flex justify-between items-center">
                     <p className="text-xl font-medium text-accent tabular-nums">{`$ ${prod.price}`}</p>
-                    <a href={`/product-detail/:${prod.id}`}>
+                    <div className="flex gap-3">
+                        <a href={`/product-detail/:${prod.id}`}>
                         <button className="px-4 py-2 rounded-md bg-accent text-text-on-accent text-sm font-medium hover:bg-accent-hover cursor-pointer transition-colors duration-200">Ver mas</button>
-                    </a>
+                        </a>
+                        <button onClick={() => addOrderItem(prod)} className="px-4 py-2 rounded-md bg-oro-600 text-text-on-accent text-sm font-medium hover:bg-accent-hover cursor-pointer transition-colors duration-200">Añadir</button>
+                    </div>
                 </div>
             </div>
             

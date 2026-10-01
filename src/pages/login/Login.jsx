@@ -1,4 +1,4 @@
-const URL = 'https://69f20a88b15130b973526bd8.mockapi.io/'
+// const URL = 'https://69f20a88b15130b973526bd8.mockapi.io/'
 
 export default function Login () {
     async function handleSubmit (evt) {
