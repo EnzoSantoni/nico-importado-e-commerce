@@ -30,8 +30,8 @@ export default function Header () {
             </nav>
             
             <button className="relative size-10 flex items-center justify-center rounded-md text-text hover:bg-surface-hover cursor-pointer transition-colors duration-200" onClick={() => toggleSidebarOrder()}>
-            <FontAwesomeIcon icon={faCartShopping} />
-            <span className="absolute -top-1 -right-1 min-w-5 h-5 px-1 flex items-center justify-center rounded-full bg-accent text-xs font-medium text-text-on-accent tabular-nums">{totalQuantity}</span>
+                <FontAwesomeIcon icon={faCartShopping} />
+                {totalQuantity >= 1 && <span className="absolute -top-1 -right-1 min-w-5 h-5 px-1 flex items-center justify-center rounded-full bg-accent text-xs font-medium text-text-on-accent tabular-nums">{totalQuantity}</span>}
             </button>
 
         </header>

@@ -32,8 +32,7 @@ export const OrderProvider = ({ children }) => {
             return
         } else {
             // Si no existe lo aniadimos al array
-            prod.quantity = 1;
-            setOrder([...order, prod]);
+            setOrder([...order, { ...prod, quantity: 1}]);
         }
     }
     //calcular total
