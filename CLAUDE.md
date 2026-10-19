@@ -207,7 +207,9 @@ Anoto todo lo que aprendo en Notion, con una estructura de páginas anidadas. Ya
 
 Quiero replicar exactamente ese método con Tailwind.
 
-**Cada vez que aprenda algo nuevo o agregue algo al proyecto, cerrá con un bloque listo para pegar en Notion.** No me digas solo dónde va: dame la nota escrita. Yo la copio y la pego, sin reescribir nada.
+**Actualización (octubre 2026): NO generes bloques de Notion por tu cuenta.** Solo cuando te los pida explícitamente. El formato y la estructura de abajo quedan como referencia para esos casos.
+
+Cuando te pida una nota: no me digas solo dónde va, dame la nota escrita. Yo la copio y la pego, sin reescribir nada.
 
 Formato del bloque:
 
@@ -217,7 +219,7 @@ Formato del bloque:
 [la nota, ya redactada y lista para pegar]
 ```
 
-Hacelo sin que te lo pida. Si en una sesión tocamos tres cosas distintas, dame tres bloques separados — uno por página de destino, no un resumen mezclado. Cada nota tiene que entenderse sola dentro de seis meses, sin el contexto de la conversación en la que salió.
+Si te pido notas de varias cosas distintas, dame bloques separados — uno por página de destino, no un resumen mezclado. Cada nota tiene que entenderse sola dentro de seis meses, sin el contexto de la conversación en la que salió.
 
 Esta es la estructura que voy a usar. Si detectás que algo no encaja en ninguna rama o que falta una, decímelo:
 
@@ -343,6 +345,7 @@ Si te pregunto por algo de acá y todavía no corresponde por dónde voy en el b
 - [ ] Badge "NUEVO" en la card para productos con menos de X días (usando `createdAt`).
 - [ ] Formatear el precio a moneda argentina (viene como string de la API).
 - [ ] Estados de carga y error en `ProductList` — hoy el error solo va a `console.log`.
+- [ ] **`total` en `OrderContext` es estado derivado.** Hoy está como `useState` + `useEffect` que llama a `calculateTotal()`, siguiendo la clase. Funciona, pero el linter del React Compiler lo marca con dos errores que no tienen solución mientras exista ese efecto ("accessed before it is declared" si el efecto va arriba, "calling setState synchronously within an effect" si va abajo). La solución es borrar el `useState` del total, el `useEffect` y la función, y dejar `total` como una constante que se calcula a partir de `order` en cada render. **Decidí dejarlo como el profesor por ahora** para no desviarme de la clase. Lo mismo aplica a la llamada a `calculateTotal()` dentro de `addOrderItem`, que corre con el `order` viejo, y a `prod.quantity = 1`, que muta el objeto que viene de la API.
 - [ ] Menú mobile en el header: con 7 links en fila se rompe en pantallas chicas.
 - [ ] Filtros por categoría en el catálogo.
 

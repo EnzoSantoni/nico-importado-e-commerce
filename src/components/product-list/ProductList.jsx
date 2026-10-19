@@ -21,8 +21,6 @@ export default function ProductList() {
         getProducts()
     }, [])
 
-    console.log(products)
-
     return (
         <div>
             <h2>LISTA DE PRODUCTOS</h2>

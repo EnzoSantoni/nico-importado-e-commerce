@@ -2,7 +2,6 @@
 
 export default function Login () {
     async function handleSubmit (evt) {
-        console.log(evt)
         // Prevenir el comportamiento por defecto
         evt.preventDefault();
         //Tomar datos del formulario
