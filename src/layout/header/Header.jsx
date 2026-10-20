@@ -1,14 +1,16 @@
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCartShopping, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router";
 import { useOrder } from "../../context/OrderContext";
+import { useState } from "react";
 
 export default function Header () {
     const isAdmin = true;
+    const [ menuOpen, setMenuOpen ] = useState(false);
 
     const {toggleSidebarOrder, totalQuantity} = useOrder();
 
-    const linkStyles = 'p-4 hover:text-text'
+    const linkStyles = 'px-4 py-3 lg:p-4 hover:text-text hover:bg-surface-hover lg:hover:bg-transparent transition-colors'
 
     const links = [
         {to: "/", title: 'Principal'},
@@ -22,14 +24,17 @@ export default function Header () {
         
     ]
     return (
-        <header className="flex items-center justify-between bg-bg border-b border-borders pr-4">
-            <nav className="flex">
+        <header className="relative flex items-center justify-between bg-bg border-b border-borders px-4 lg:pl-0 h-16">
+            <button className="lg:hidden size-11 flex items-center justify-center rounded-md text-text hover:bg-surface-hover cursor-pointer transition-colors duration-200 text-xl" onClick={() => setMenuOpen(!menuOpen)}>
+                <FontAwesomeIcon icon={menuOpen ? faXmark : faBars}></FontAwesomeIcon>
+            </button>
+            <nav className={`${menuOpen ? 'flex opacity-100 translate-y-0' : 'hidden opacity-0 -translate-y-2'} absolute top-full left-0 right-0 z-10 flex-col bg-bg border-b border-borders lg:static lg:flex lg:flex-row lg:border-0 starting:opacity-0 starting:-translate-y-2 transition-[opacity,translate,display] transition-discrete duration-200 ease-out lg:opacity-100 lg:translate-y-0 lg:transition-none`}>
                 {links.map(l => {
-                    return <NavLink to={l.to} className={({isActive})  => linkStyles + (isActive ?  ' text-text' : ' text-text-muted')} key={l.to}>{l.title}</NavLink>
+                    return <NavLink to={l.to} className={({isActive})  => linkStyles + (isActive ?  ' text-text' : ' text-text-muted')} key={l.to} onClick={() => setMenuOpen(!menuOpen)}>{l.title}</NavLink>
                 })}
             </nav>
             
-            <button className="relative size-10 flex items-center justify-center rounded-md text-text hover:bg-surface-hover cursor-pointer transition-colors duration-200" onClick={() => toggleSidebarOrder()}>
+            <button className="relative size-11 flex items-center justify-center rounded-md text-text hover:bg-surface-hover cursor-pointer transition-colors duration-200 text-xl" onClick={() => toggleSidebarOrder()}>
                 <FontAwesomeIcon icon={faCartShopping} />
                 {totalQuantity >= 1 && <span className="absolute -top-1 -right-1 min-w-5 h-5 px-1 flex items-center justify-center rounded-full bg-accent text-xs font-medium text-text-on-accent tabular-nums">{totalQuantity}</span>}
             </button>

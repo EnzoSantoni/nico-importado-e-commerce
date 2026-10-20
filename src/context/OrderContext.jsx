@@ -7,11 +7,7 @@ export const useOrder = () => useContext(OrderContext)
 
 export const OrderProvider = ({ children }) => {
     //estado de la orden
-    const [ order, setOrder ] = useState([
-        {id: 100, name: 'XBOX', price: 1000, quantity: 1},
-        {id: 222, name: 'PS5', price: 2000, quantity: 3},
-        {id: 333, name: 'Nintendo Switch', price: 5000, quantity: 2},
-    ]);
+    const [ order, setOrder ] = useState(JSON.parse(localStorage.getItem('order')) || []);
     const [sidebarToggle, setSidebarToggle] = useState(false);
 
     const [total, setTotal] = useState(0);
@@ -50,6 +46,7 @@ export const OrderProvider = ({ children }) => {
 
     useEffect(() => {
         //Se ejecuta o llaman a las funciones cuando el estado order se actualiza
+        localStorage.setItem("order", JSON.stringify(order));
         calculateTotal();
     }, [order]);
 
@@ -99,6 +96,7 @@ export const OrderProvider = ({ children }) => {
     function toggleSidebarOrder() {
         setSidebarToggle(!sidebarToggle);
     }
+
 
     return (
         <OrderContext.Provider value={{order, addOrderItem, total, handleChangeQuantity, removeItem, toggleSidebarOrder, sidebarToggle, totalQuantity}}>
